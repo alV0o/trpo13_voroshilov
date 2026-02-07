@@ -1,0 +1,56 @@
+﻿<Page x:Class="trpo12_voroshilov.Pages.UsersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:trpo12_voroshilov.Pages"
+      xmlns:m="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:validators="clr-namespace:trpo12_voroshilov.Validators"
+      xmlns:converters="clr-namespace:trpo12_voroshilov.Convertors"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UsersPage">
+    <Page.Resources>
+        <converters:UserConverter x:Key="userConverter"/>
+    </Page.Resources>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <StackPanel>
+                <Label Content="Логин" HorizontalAlignment="Center"/>
+                <TextBox m:HintAssist.Hint="Введите логин">
+                    <Binding Path="Login">
+                        <Binding.ValidationRules>
+                            <validators:ValidationLogin/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Имя пользователя" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Username}"
+                         m:HintAssist.Hint="Введите имя пользователя"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Электронная почта" HorizontalAlignment="Center"/>
+                <TextBox m:HintAssist.Hint="Введите электронную почту">
+                    <Binding Path="Email" Converter="{StaticResource userConverter}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules >
+                            <validators:ValidationEmail/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Пароль" HorizontalAlignment="Center"/>
+                <TextBox m:HintAssist.Hint="Введите пароль">
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validators:ValidationPassword/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </StackPanel>
+            <Button Content="Создать" Click="Add_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
