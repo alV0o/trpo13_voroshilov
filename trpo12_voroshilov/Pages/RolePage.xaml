@@ -1,0 +1,46 @@
+﻿<Page x:Class="trpo12_voroshilov.Pages.RolePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:trpo12_voroshilov.Pages"
+      xmlns:services ="clr-namespace:trpo12_voroshilov.Service"
+      xmlns:m ="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RolePage">
+    <Page.Resources>
+        <services:RolesService x:Key="roles"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ComboBox Grid.Column="0" m:HintAssist.Hint="Роли" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" MinWidth="200" ItemsSource="{Binding Source={StaticResource roles}, Path=Roles}" DisplayMemberPath="Title" SelectedItem="{Binding Role}"/>
+        <ListView Grid.Column="1"
+                  ItemsSource="{Binding Users}"
+                  Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                    <Run Text="{Binding Login}"/>
+                    <Run Text="{Binding Username}"/>
+                    <Run Text="{Binding Email}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Column="0" Margin="20"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Button HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="Найти"
+                Click="Search_Click"/>
+
+            <Button HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="Назад"
+                Click="Back_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

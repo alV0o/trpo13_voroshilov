@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using trpo12_voroshilov.Models;
 using trpo12_voroshilov.Service;
 
 namespace trpo12_voroshilov.Pages
@@ -37,19 +37,26 @@ namespace trpo12_voroshilov.Pages
         }
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(_user.Username) && !string.IsNullOrEmpty(_user.Email) && !string.IsNullOrEmpty(_user.Login) && !string.IsNullOrEmpty(_user.Password))
+            if (Validation.GetHasError(emailTextBox) || Validation.GetHasError(loginTextBox) || Validation.GetHasError(passwordTextBox))
             {
-                if (isEdit)
-                    _usersService.Commit();
-                else
-                {
-                    _user.CreatedAt = DateTime.Now;
-                    _usersService.Add(_user);
-                }
-                MessageBox.Show("Добавлен");
-                NavigationService.GoBack();
+                MessageBox.Show("Введите корректные данные!");
             }
-            else MessageBox.Show("Заполните все поля!");
+            else
+            {
+                if (!string.IsNullOrEmpty(_user.Username) && !string.IsNullOrEmpty(_user.Email) && !string.IsNullOrEmpty(_user.Login) && !string.IsNullOrEmpty(_user.Password) && _user.Role != null)
+                {
+                    if (isEdit)
+                        _usersService.Commit();
+                    else
+                    {
+                        _user.CreatedAt = DateTime.Now;
+                        _usersService.Add(_user);
+                    }
+                    MessageBox.Show("Добавлен");
+                    NavigationService.GoBack();
+                }
+                else MessageBox.Show("Заполните все поля!");
+            }
         }
     }
 }

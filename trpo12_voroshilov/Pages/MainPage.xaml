@@ -13,14 +13,26 @@
             <ListView ItemsSource="{Binding service.Users}" DockPanel.Dock="Top" SelectedItem="{Binding user}" Height="300">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Login}"/>
-                                <TextBlock Text="{Binding Username}"/>
-                                <TextBlock Text="{Binding Password}"/>
-                                <TextBlock Text="{Binding Email}"/>
-                                <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:dd.MM.yyyy}}"/>
-                            </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="{Binding UserProfile.AvatarUrl}" Width="50" Height="50"/>
+                            <TextBlock Text="{Binding Login}"/>
+                            <TextBlock Text="{Binding Username}"/>
+                            <TextBlock Text="{Binding Password}"/>
+                            <TextBlock Text="{Binding Email}"/>
+                            <TextBlock Text="{Binding Role.Title}"/>
+                            <TextBlock>
+                                <Run Text="Дата создания: "/>
+                                <Run  Text="{Binding CreatedAt, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Номер телефона: "/>
+                                <Run Text="{Binding UserProfile.Phone}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Дата рождения: "/>
+                                <Run  Text="{Binding UserProfile.Birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            </TextBlock>
+                            <TextBlock Text="{Binding UserProfile.Bio}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -28,6 +40,8 @@
             <StackPanel DockPanel.Dock="Bottom">
                 <Button Content="Добавить" Click="To_Add"/>
                 <Button Content="Изменить" Click="To_Edit"/>
+                <Button Content="В профиль" Click="To_Profile"/>
+                <Button Content="В роли" Click="To_Role"/>
             </StackPanel>
         </DockPanel>
     </Grid>

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using trpo12_voroshilov.Models;
 using trpo12_voroshilov.Service;
 
 namespace trpo12_voroshilov.Pages
@@ -40,6 +40,18 @@ namespace trpo12_voroshilov.Pages
                 MessageBox.Show("Выберите пользователя!");
             else
                 NavigationService.Navigate(new UsersPage(user));
+        }
+        private void To_Profile(object sender, RoutedEventArgs e)
+        {
+            if (user == null)
+                MessageBox.Show("Выберите пользователя!");
+            else
+                NavigationService.Navigate(new AddEditUserProfile(user));
+        }
+
+        private void To_Role(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RolePage());
         }
     }
 }

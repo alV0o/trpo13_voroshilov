@@ -6,19 +6,19 @@
       xmlns:local="clr-namespace:trpo12_voroshilov.Pages"
       xmlns:m="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:validators="clr-namespace:trpo12_voroshilov.Validators"
-      xmlns:converters="clr-namespace:trpo12_voroshilov.Convertors"
+      xmlns:services ="clr-namespace:trpo12_voroshilov.Service"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UsersPage">
     <Page.Resources>
-        <converters:UserConverter x:Key="userConverter"/>
+        <services:RolesService x:Key="roles"/>
     </Page.Resources>
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <StackPanel>
                 <Label Content="Логин" HorizontalAlignment="Center"/>
-                <TextBox m:HintAssist.Hint="Введите логин">
-                    <Binding Path="Login">
+                <TextBox x:Name="loginTextBox" m:HintAssist.Hint="Введите логин">
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validators:ValidationLogin/>
                         </Binding.ValidationRules>
@@ -32,8 +32,8 @@
             </StackPanel>
             <StackPanel>
                 <Label Content="Электронная почта" HorizontalAlignment="Center"/>
-                <TextBox m:HintAssist.Hint="Введите электронную почту">
-                    <Binding Path="Email" Converter="{StaticResource userConverter}" UpdateSourceTrigger="PropertyChanged">
+                <TextBox x:Name="emailTextBox" m:HintAssist.Hint="Введите электронную почту">
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules >
                             <validators:ValidationEmail/>
                         </Binding.ValidationRules>
@@ -42,7 +42,7 @@
             </StackPanel>
             <StackPanel>
                 <Label Content="Пароль" HorizontalAlignment="Center"/>
-                <TextBox m:HintAssist.Hint="Введите пароль">
+                <TextBox x:Name="passwordTextBox" m:HintAssist.Hint="Введите пароль">
                     <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validators:ValidationPassword/>
@@ -50,6 +50,7 @@
                     </Binding>
                 </TextBox>
             </StackPanel>
+            <ComboBox  m:HintAssist.Hint="Роли" ItemsSource="{Binding Source={StaticResource roles}, Path=Roles}" DisplayMemberPath="Title" SelectedItem="{Binding Role}"/>
             <Button Content="Создать" Click="Add_Click"/>
         </StackPanel>
     </Grid>
