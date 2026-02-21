@@ -52,6 +52,7 @@
             </StackPanel>
             <ComboBox  m:HintAssist.Hint="Роли" ItemsSource="{Binding Source={StaticResource roles}, Path=Roles}" DisplayMemberPath="Title" SelectedItem="{Binding Role}"/>
             <Button Content="Создать" Click="Add_Click"/>
+            <Button Content="Назад" Click="Back_Click"/>
         </StackPanel>
     </Grid>
 </Page>

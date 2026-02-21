@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Images\logo1.jpg" />
+    <None Remove="Images\logo2.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,9 +24,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\logo1.jpg">
+    <EmbeddedResource Include="Images\logo1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\logo2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -58,5 +58,10 @@ namespace trpo12_voroshilov.Pages
                 else MessageBox.Show("Заполните все поля!");
             }
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

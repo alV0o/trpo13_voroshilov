@@ -16,7 +16,8 @@ namespace trpo12_voroshilov.Data
         public DbSet<Role> Roles { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=trpo13_voroshilov_db;TrustServerCertificate=True;Trusted_Connection=True; Encrypt=True;");
+            //optionsBuilder.UseSqlServer("Server=localhost;Database=trpo13_voroshilov_db;TrustServerCertificate=True;Trusted_Connection=True; Encrypt=True;");
+            optionsBuilder.UseSqlServer("Server=sql.ects;Database=trpo13_voroshilov_db;User Id=student_08;Password=student_08;TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -24,7 +24,6 @@ namespace trpo12_voroshilov.Pages
     public partial class RolePage : Page
     {
         public Role Role { get; set; } = new();
-        RolesService service = new();
         UsersService usersService = new();
         public ObservableCollection<User> Users { get; set; } = new();
         public RolePage()
